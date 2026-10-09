@@ -18,7 +18,7 @@
     <img src="logo.png" alt="" class="small-logo">
     <span class="brand-copy">
       <span class="brand-name">Dreamcatcher</span>
-      <span class="tagline" id="headerPhrase">[Фраза ЛВ]</span>
+      <span class="tagline fade" id="headerPhrase">[Фраза ЛВ]</span>
     </span>
   </button>
 
@@ -64,12 +64,14 @@
   <!-- C. DOCUMENT CARDS -->
   <section class="cards" aria-label="Documents">
     <a class="document-card terms-card interactive" href="terms.html">
+      <!-- Future PNG slot: replace the ✧ with <img src="terms-star.png" alt="" loading="lazy"> when the decorative asset is ready. -->
       <span class="card-star" aria-hidden="true">✧</span>
       <h2 data-i18n="termsTitle">TOS/AUP</h2>
       <p class="description" data-i18n="termsDescription">You stand at the threshold of our Silence. Listen — to enter. Do not disturb — to stay. She needs peace to become a home; a home for those who know how to enter without knocking.</p>
       <span class="card-action" data-i18n="termsAction">Listen closely <span aria-hidden="true">→</span></span>
     </a>
     <a class="document-card privacy-card interactive" href="privacy.html">
+      <!-- Future PNG slot: replace the ✧ with <img src="privacy-star.png" alt="" loading="lazy"> when the decorative asset is ready. -->
       <span class="card-star" aria-hidden="true">✧</span>
       <h2 data-i18n="privacyTitle">Privacy Policy</h2>
       <p class="description" data-i18n="privacyDescription">Your Silence is not ours. We only welcome it into our Silence, for as long as you trust us. Discover what we hear, how we guard it, and how long we remember.</p>
@@ -93,22 +95,25 @@
 
   <div class="social-links">
     <!-- TODO: Replace # with your personal Discord profile link. -->
-    <a class="social-link interactive" href="https://discordapp.com/users/963447872991404074" target="_blank" rel="noopener noreferrer" aria-label="My Discord">
+    <a class="social-link interactive" href="#" target="_blank" rel="noopener noreferrer" aria-label="My Discord">
+      <!-- Future PNG slot: replace this SVG with <img src="discord.png" alt="" loading="lazy"> after the tinted icon is ready. -->
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 6.1A15.5 15.5 0 0 1 11 5l.5 1.1a13.7 13.7 0 0 1 1.1 0L13.1 5a15.5 15.5 0 0 1 3.7 1.1c2.2 3.2 2.8 6.4 2.5 9.5a15.2 15.2 0 0 1-4.6 2.3l-1-1.6c.6-.2 1.2-.5 1.7-.8l-.4-.3a10.8 10.8 0 0 1-6 0l-.4.3c.5.3 1.1.6 1.7.8l-1 1.6a15.2 15.2 0 0 1-4.6-2.3c-.4-3.8.7-7 2.5-9.5Z"/><circle cx="9.2" cy="11.8" r="1"/><circle cx="14.8" cy="11.8" r="1"/></svg>
       <span data-i18n="myDiscord">My Discord</span>
     </a>
     <!-- TODO: Replace # with the Beyond A Dream community invite link. -->
-    <a class="social-link interactive" href="https://discord.gg/sxd4SKca" target="_blank" rel="noopener noreferrer" aria-label="Beyond A Dream">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19v-1.3A4.7 4.7 0 0 1 8.2 13h1.6a4.7 4.7 0 0 1 4.7 4.7V19Z"/><path d="M16 5.4a3 3 0 0 1 0 5.8M16.3 13h.8a3.4 3.4 0 0 1 3.4 3.4V18"/></svg>
+    <a class="social-link interactive" href="#" target="_blank" rel="noopener noreferrer" aria-label="Beyond A Dream">
+      <!-- Same Discord mark as the personal profile; the PNG version will replace it later. -->
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 6.1A15.5 15.5 0 0 1 11 5l.5 1.1a13.7 13.7 0 0 1 1.1 0L13.1 5a15.5 15.5 0 0 1 3.7 1.1c2.2 3.2 2.8 6.4 2.5 9.5a15.2 15.2 0 0 1-4.6 2.3l-1-1.6c.6-.2 1.2-.5 1.7-.8l-.4-.3a10.8 10.8 0 0 1-6 0l-.4.3c.5.3 1.1.6 1.7.8l-1 1.6a15.2 15.2 0 0 1-4.6-2.3c-.4-3.8.7-7 2.5-9.5Z"/><circle cx="9.2" cy="11.8" r="1"/><circle cx="14.8" cy="11.8" r="1"/></svg>
       <span>Beyond A Dream</span>
     </a>
     <!-- TODO: Replace # with your Steam profile link. -->
-    <a class="social-link interactive" href="https://steamcommunity.com/id/Crazy-profile-Its_REALLY/" target="_blank" rel="noopener noreferrer" aria-label="My Steam">
+    <a class="social-link interactive" href="#" target="_blank" rel="noopener noreferrer" aria-label="My Steam">
+      <!-- Future PNG slot: replace this SVG with <img src="steam.png" alt="" loading="lazy"> after the tinted icon is ready. -->
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="15.5" cy="8.5" r="2.3"/><circle cx="8.3" cy="14.8" r="2.5"/><path d="m10.3 13.5 3.4-3.2M6.1 14.2l-3-1.1"/></svg>
       <span data-i18n="mySteam">My Steam</span>
     </a>
   </div>
-  <div class="footer-phrase fade" id="footerPhrase">[Фраза ПН 1]</div>
+  <div class="footer-phrase-wrap"><div class="footer-phrase fade" id="footerPhrase">[Фраза ПН 1]</div><span class="footer-star" aria-hidden="true">✧</span></div>
 </footer>
 
 <script>
@@ -158,8 +163,20 @@ let language = localStorage.getItem(LANGUAGE_KEY);
 if (!translations[language]) {
   language = (navigator.language || "").toLowerCase().startsWith("ru") ? "ru" : "en";
 }
-const randomItem = array => array[Math.floor(Math.random() * array.length)];
 const byId = id => document.getElementById(id);
+
+// Avoid repeating the same quote immediately when the rotation runs.
+const lastPicks = new Map();
+function randomItem(array, key = null) {
+  if (!array || array.length === 0) return "";
+  if (array.length === 1) return array[0];
+  let choice;
+  let previous = key ? lastPicks.get(key) : null;
+  do { choice = array[Math.floor(Math.random() * array.length)]; }
+  while (choice === previous);
+  if (key) lastPicks.set(key, choice);
+  return choice;
+}
 
 function fadeTo(element, text) {
   if (!element) return;
@@ -204,33 +221,66 @@ byId("ornamentButton").addEventListener("click", () => setLanguage(language === 
 function showRandomPhrases(animate = true) {
   const data = translations[language];
   const values = [
-    [byId("headerPhrase"), randomItem(data.header)],
-    [byId("heroQuote"), randomItem(data.hero)],
-    [byId("lowerQuote"), randomItem(data.lower)],
-    [byId("footerPhrase"), randomItem(data.footer)]
+    [byId("headerPhrase"), randomItem(data.header, "header")],
+    [byId("heroQuote"), randomItem(data.hero, "hero")],
+    [byId("lowerQuote"), randomItem(data.lower, "lower")],
+    [byId("footerPhrase"), randomItem(data.footer, "footer")]
   ];
   values.forEach(([element, value]) => animate ? fadeTo(element, value) : element.textContent = value);
   showEasterEggs(animate);
 }
 
-/* Easter text and star fade together; each change also shifts position. */
+/*
+  Easter eggs use non-overlapping layout slots rather than arbitrary coordinates.
+  Desktop: up to three phrases. Tablet: two. Phone: one.
+  Long text wraps inside its own slot; star and phrase fade as one unit.
+*/
 const ambient = [byId("ambientOne"), byId("ambientTwo"), byId("ambientThree")];
-const ambientPositions = [
-  { left: "4%", top: "8%" },
-  { left: "67%", top: "2%" },
-  { left: "77%", top: "47%" },
-  { left: "12%", top: "44%" },
-  { left: "72%", top: "23%" }
-];
+const ambientSlots = {
+  desktop: [
+    { left: "0%", top: "13%", right: "auto" },
+    { left: "2%", top: "61%", right: "auto" },
+    { left: "auto", top: "34%", right: "0%" }
+  ],
+  tablet: [
+    { left: "0%", top: "12%", right: "auto" },
+    { left: "auto", top: "48%", right: "0%" }
+  ],
+  phone: [
+    { left: "0%", top: "-24px", right: "auto" },
+    { left: "auto", top: "-24px", right: "0%" }
+  ]
+};
+
+function sampleDistinct(array, count) {
+  const copy = [...array];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy.slice(0, count);
+}
 
 function showEasterEggs(animate = true) {
-  ambient.forEach(element => {
+  const width = window.innerWidth;
+  // A phone using "Desktop site" can report a wide viewport, so check the device too.
+  const phoneDevice = /Android|iPhone|iPod|Mobile/i.test(navigator.userAgent);
+  const mode = phoneDevice || width <= 560 ? "phone" : width <= 900 ? "tablet" : "desktop";
+  const slots = sampleDistinct(ambientSlots[mode], mode === "phone" ? 1 : ambientSlots[mode].length);
+  const visibleCount = slots.length;
+  const chosenPhrases = sampleDistinct(translations[language].easter, Math.min(visibleCount, translations[language].easter.length));
+
+  ambient.forEach((element, index) => {
+    const visible = index < visibleCount;
+    element.style.display = visible ? "flex" : "none";
+    if (!visible) return;
+
     const change = () => {
-      element.querySelector(".ambient-text").textContent = randomItem(translations[language].easter);
-      const position = randomItem(ambientPositions);
+      const position = slots[index];
       element.style.left = position.left;
+      element.style.right = position.right;
       element.style.top = position.top;
-      element.style.right = "auto";
+      element.querySelector(".ambient-text").textContent = chosenPhrases[index];
     };
     if (animate) {
       element.classList.add("is-fading");
@@ -240,9 +290,17 @@ function showEasterEggs(animate = true) {
       }, 850);
     } else {
       change();
+      element.classList.remove("is-fading");
     }
   });
 }
+
+// Recalculate safe positions if the screen rotates or the browser is resized.
+let resizeRefresh;
+window.addEventListener("resize", () => {
+  window.clearTimeout(resizeRefresh);
+  resizeRefresh = window.setTimeout(() => showEasterEggs(false), 180);
+});
 
 /* Author note is a side panel, not a screen-covering modal. */
 function toggleAuthor(open) {
@@ -265,10 +323,10 @@ showRandomPhrases(false);
 /* Change quotations slowly; dividers remain fixed. */
 window.setInterval(() => {
   const data = translations[language];
-  fadeTo(byId("heroQuote"), randomItem(data.hero));
-  fadeTo(byId("lowerQuote"), randomItem(data.lower));
-  fadeTo(byId("headerPhrase"), randomItem(data.header));
-  fadeTo(byId("footerPhrase"), randomItem(data.footer));
+  fadeTo(byId("heroQuote"), randomItem(data.hero, "hero"));
+  fadeTo(byId("lowerQuote"), randomItem(data.lower, "lower"));
+  fadeTo(byId("headerPhrase"), randomItem(data.header, "header"));
+  fadeTo(byId("footerPhrase"), randomItem(data.footer, "footer"));
 }, 14000);
 window.setInterval(() => showEasterEggs(true), 9000);
 </script>
