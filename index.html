@@ -181,10 +181,12 @@ function randomItem(array, key = null) {
 function fadeTo(element, text) {
   if (!element) return;
   element.classList.add("is-fading");
+  // Wait until the fade-out is fully finished before replacing the text.
+  // The CSS transition lasts 1.1s, so leave a small safety margin.
   window.setTimeout(() => {
     element.textContent = text;
     element.classList.remove("is-fading");
-  }, 850);
+  }, 1200);
 }
 
 function setLanguage(nextLanguage) {
@@ -337,7 +339,8 @@ function showEasterEggs(animate = true) {
 
     if (animate) {
       element.classList.add("is-fading");
-      window.setTimeout(() => element.classList.remove("is-fading"), 850);
+      // Match the CSS fade duration so the phrase fully disappears first.
+      window.setTimeout(() => element.classList.remove("is-fading"), 1200);
     } else {
       element.classList.remove("is-fading");
     }
@@ -348,7 +351,7 @@ function hideEasterEggs() {
   ambient.forEach(element => {
     if (element.style.display === "none") return;
     element.classList.add("is-fading");
-    window.setTimeout(() => { element.style.display = "none"; }, 900);
+    window.setTimeout(() => { element.style.display = "none"; }, 1200);
   });
 }
 
