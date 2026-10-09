@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050b20">
+<title>Dreamcatcher — Documentation</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="background" aria-hidden="true"></div>
+<div class="shade" aria-hidden="true"></div>
+
+<!-- A. TOP PANEL -->
+<header class="topbar">
+  <button class="brand interactive" id="authorToggle" type="button" aria-expanded="false" aria-controls="authorPanel">
+    <img src="logo.png" alt="" class="small-logo">
+    <span class="brand-copy">
+      <span class="brand-name">Dreamcatcher</span>
+      <span class="tagline" id="headerPhrase">[Фраза ЛВ]</span>
+    </span>
+  </button>
+
+  <nav class="navigation" aria-label="Main navigation">
+    <a class="nav-link active interactive" href="index.html" data-i18n="navHome">Home</a>
+    <!-- These pages will be created after the homepage is approved. -->
+    <a class="nav-link interactive" href="terms.html" data-i18n="navTerms">TOS/AUP</a>
+    <a class="nav-link interactive" href="privacy.html" data-i18n="navPrivacy">Privacy Policy</a>
+  </nav>
+
+  <div class="top-right">
+    <div class="language-switch" aria-label="Language">
+      <button type="button" class="language-button interactive" data-language="ru">RU</button>
+      <span>/</span>
+      <button type="button" class="language-button interactive" data-language="en">EN</button>
+    </div>
+    <button class="ornament interactive" id="ornamentButton" type="button" aria-label="Switch language">✧</button>
+  </div>
+</header>
+
+<!-- The author panel opens beside the content. No repeated logo/name here. -->
+<aside class="author-panel glass" id="authorPanel" aria-hidden="true">
+  <button class="panel-close interactive" id="authorClose" type="button" aria-label="Close">×</button>
+  <p id="authorText">[Текст автора]</p>
+  <!-- Pseudonym is intentionally the same in both languages. -->
+  <p class="signature"><span></span>really_crazy</p>
+</aside>
+
+<main class="content">
+  <!-- B. HERO -->
+  <section class="hero">
+    <div class="ambient ambient-one" id="ambientOne"><span class="tiny-star">✦</span><span class="ambient-text">[Пасхалка 1]</span></div>
+    <div class="ambient ambient-two" id="ambientTwo"><span class="tiny-star">✦</span><span class="ambient-text">[Пасхалка 2]</span></div>
+    <div class="ambient ambient-three" id="ambientThree"><span class="tiny-star">✦</span><span class="ambient-text">[Пасхалка 3]</span></div>
+
+    <img src="logo.png" alt="Dreamcatcher logo" class="hero-logo">
+    <h1>Dreamcatcher</h1>
+    <p class="subtitle" data-i18n="subtitle">Discord Bot Documentation</p>
+    <div class="hero-quote fade" id="heroQuote" aria-live="polite">[Цитата над 1]</div>
+    <div class="divider blue-divider" aria-hidden="true"><span></span><b>✧</b><span></span></div>
+  </section>
+
+  <!-- C. DOCUMENT CARDS -->
+  <section class="cards" aria-label="Documents">
+    <a class="document-card terms-card interactive" href="terms.html">
+      <span class="card-star" aria-hidden="true">✧</span>
+      <h2 data-i18n="termsTitle">TOS/AUP</h2>
+      <p class="description" data-i18n="termsDescription">You stand at the threshold of our Silence. Listen — to enter. Do not disturb — to stay. She needs peace to become a home; a home for those who know how to enter without knocking.</p>
+      <span class="card-action" data-i18n="termsAction">Listen closely <span aria-hidden="true">→</span></span>
+    </a>
+    <a class="document-card privacy-card interactive" href="privacy.html">
+      <span class="card-star" aria-hidden="true">✧</span>
+      <h2 data-i18n="privacyTitle">Privacy Policy</h2>
+      <p class="description" data-i18n="privacyDescription">Your Silence is not ours. We only welcome it into our Silence, for as long as you trust us. Discover what we hear, how we guard it, and how long we remember.</p>
+      <span class="card-action" data-i18n="privacyAction">Trust <span aria-hidden="true">→</span></span>
+    </a>
+  </section>
+
+  <!-- D. LOWER QUOTE -->
+  <section class="lower-quote-section" aria-label="A thought">
+    <div class="lower-quote fade" id="lowerQuote" aria-live="polite">[Цитата под 1]</div>
+    <div class="divider gold-divider" aria-hidden="true"><span></span><b>✧</b><span></span></div>
+  </section>
+</main>
+
+<!-- E. BOTTOM PANEL -->
+<footer class="footer">
+  <a href="index.html" class="footer-brand interactive" aria-label="Dreamcatcher home">
+    <img src="logo.png" alt="" class="footer-logo">
+    <span><span class="footer-name">Dreamcatcher</span><span class="footer-caption" data-i18n="footerCaption">Personal Discord</span></span>
+  </a>
+
+  <div class="social-links">
+    <!-- TODO: Replace # with your personal Discord profile link. -->
+    <a class="social-link interactive" href="#" target="_blank" rel="noopener noreferrer" aria-label="My Discord">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 6.1A15.5 15.5 0 0 1 11 5l.5 1.1a13.7 13.7 0 0 1 1.1 0L13.1 5a15.5 15.5 0 0 1 3.7 1.1c2.2 3.2 2.8 6.4 2.5 9.5a15.2 15.2 0 0 1-4.6 2.3l-1-1.6c.6-.2 1.2-.5 1.7-.8l-.4-.3a10.8 10.8 0 0 1-6 0l-.4.3c.5.3 1.1.6 1.7.8l-1 1.6a15.2 15.2 0 0 1-4.6-2.3c-.4-3.8.7-7 2.5-9.5Z"/><circle cx="9.2" cy="11.8" r="1"/><circle cx="14.8" cy="11.8" r="1"/></svg>
+      <span data-i18n="myDiscord">My Discord</span>
+    </a>
+    <!-- TODO: Replace # with the Beyond A Dream community invite link. -->
+    <a class="social-link interactive" href="#" target="_blank" rel="noopener noreferrer" aria-label="Beyond A Dream">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19v-1.3A4.7 4.7 0 0 1 8.2 13h1.6a4.7 4.7 0 0 1 4.7 4.7V19Z"/><path d="M16 5.4a3 3 0 0 1 0 5.8M16.3 13h.8a3.4 3.4 0 0 1 3.4 3.4V18"/></svg>
+      <span>Beyond A Dream</span>
+    </a>
+    <!-- TODO: Replace # with your Steam profile link. -->
+    <a class="social-link interactive" href="#" target="_blank" rel="noopener noreferrer" aria-label="My Steam">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="15.5" cy="8.5" r="2.3"/><circle cx="8.3" cy="14.8" r="2.5"/><path d="m10.3 13.5 3.4-3.2M6.1 14.2l-3-1.1"/></svg>
+      <span data-i18n="mySteam">My Steam</span>
+    </a>
+  </div>
+  <div class="footer-phrase fade" id="footerPhrase">[Фраза ПН 1]</div>
+</footer>
+
+<script>
+/* ============================================================
+   1. TEXTS — all placeholder groups contain three variants.
+   The EN/RU placeholder wording is kept separate intentionally.
+   ============================================================ */
+const translations = {
+  en: {
+    navHome: "Home", navTerms: "TOS/AUP", navPrivacy: "Privacy Policy",
+    subtitle: "Discord Bot Documentation",
+    termsTitle: "TOS/AUP",
+    termsDescription: "You stand at the threshold of our Silence. Listen — to enter. Do not disturb — to stay. She needs peace to become a home; a home for those who know how to enter without knocking.",
+    termsAction: "Listen closely",
+    privacyTitle: "Privacy Policy",
+    privacyDescription: "Your Silence is not ours. We only welcome it into our Silence, for as long as you trust us. Discover what we hear, how we guard it, and how long we remember.",
+    privacyAction: "Trust",
+    footerCaption: "Personal Discord", myDiscord: "My Discord", mySteam: "My Steam",
+    header: ["[EN фраза ЛВ 1]", "[EN фраза ЛВ 2]", "[EN фраза ЛВ 3]"],
+    author: "[EN текст автора]",
+    hero: ["[EN цитата над 1]", "[EN цитата над 2]", "[EN цитата над 3]"],
+    lower: ["[EN цитата под 1]", "[EN цитата под 2]", "[EN цитата под 3]"],
+    footer: ["[EN фраза ПН 1]", "[EN фраза ПН 2]", "[EN фраза ПН 3]"],
+    easter: ["[EN пасхалка 1]", "[EN пасхалка 2]", "[EN пасхалка 3]"]
+  },
+  ru: {
+    navHome: "Главная", navTerms: "Условия использования", navPrivacy: "Политика конфиденциальности",
+    subtitle: "Документация Discord-бота",
+    termsTitle: "Условия пользования",
+    termsDescription: "Ты на пороге нашей тишины. Прислушайся — чтобы войти. Не тревожь — чтобы остаться. Ей нужно спокойствие, чтобы стать домом; домом для тех, кто умеет входить без стука.",
+    termsAction: "Прислушайся",
+    privacyTitle: "Политика конфиденциальности",
+    privacyDescription: "Твоя тишина — не наша. Мы лишь впускаем её в свою тишину, пока ты доверяешь. Узнай, что мы слышим, как бережём и как долго помним.",
+    privacyAction: "Доверься",
+    footerCaption: "Личный Discord", myDiscord: "Мой Discord", mySteam: "Мой Steam",
+    header: ["[Фраза ЛВ 1]", "[Фраза ЛВ 2]", "[Фраза ЛВ 3]"],
+    author: "[Текст автора]",
+    hero: ["[Цитата над 1]", "[Цитата над 2]", "[Цитата над 3]"],
+    lower: ["[Цитата под 1]", "[Цитата под 2]", "[Цитата под 3]"],
+    footer: ["[Фраза ПН 1]", "[Фраза ПН 2]", "[Фраза ПН 3]"],
+    easter: ["[Пасхалка 1]", "[Пасхалка 2]", "[Пасхалка 3]"]
+  }
+};
+
+const LANGUAGE_KEY = "dreamcatcher-language";
+let language = localStorage.getItem(LANGUAGE_KEY);
+if (!translations[language]) {
+  language = (navigator.language || "").toLowerCase().startsWith("ru") ? "ru" : "en";
+}
+const randomItem = array => array[Math.floor(Math.random() * array.length)];
+const byId = id => document.getElementById(id);
+
+function fadeTo(element, text) {
+  if (!element) return;
+  element.classList.add("is-fading");
+  window.setTimeout(() => {
+    element.textContent = text;
+    element.classList.remove("is-fading");
+  }, 850);
+}
+
+function setLanguage(nextLanguage) {
+  if (!translations[nextLanguage]) return;
+  language = nextLanguage;
+  localStorage.setItem(LANGUAGE_KEY, language);
+  document.documentElement.lang = language;
+
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const value = translations[language][element.dataset.i18n];
+    if (typeof value !== "string") return;
+    if (element.classList.contains("card-action")) {
+      element.innerHTML = `${value} <span aria-hidden="true">→</span>`;
+    } else {
+      element.textContent = value;
+    }
+  });
+
+  document.querySelectorAll(".language-button").forEach(button => {
+    const selected = button.dataset.language === language;
+    button.classList.toggle("selected", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+
+  byId("authorText").textContent = translations[language].author;
+  showRandomPhrases(false);
+}
+
+document.querySelectorAll(".language-button").forEach(button => {
+  button.addEventListener("click", () => setLanguage(button.dataset.language));
+});
+byId("ornamentButton").addEventListener("click", () => setLanguage(language === "en" ? "ru" : "en"));
+
+function showRandomPhrases(animate = true) {
+  const data = translations[language];
+  const values = [
+    [byId("headerPhrase"), randomItem(data.header)],
+    [byId("heroQuote"), randomItem(data.hero)],
+    [byId("lowerQuote"), randomItem(data.lower)],
+    [byId("footerPhrase"), randomItem(data.footer)]
+  ];
+  values.forEach(([element, value]) => animate ? fadeTo(element, value) : element.textContent = value);
+  showEasterEggs(animate);
+}
+
+/* Easter text and star fade together; each change also shifts position. */
+const ambient = [byId("ambientOne"), byId("ambientTwo"), byId("ambientThree")];
+const ambientPositions = [
+  { left: "4%", top: "8%" },
+  { left: "67%", top: "2%" },
+  { left: "77%", top: "47%" },
+  { left: "12%", top: "44%" },
+  { left: "72%", top: "23%" }
+];
+
+function showEasterEggs(animate = true) {
+  ambient.forEach(element => {
+    const change = () => {
+      element.querySelector(".ambient-text").textContent = randomItem(translations[language].easter);
+      const position = randomItem(ambientPositions);
+      element.style.left = position.left;
+      element.style.top = position.top;
+      element.style.right = "auto";
+    };
+    if (animate) {
+      element.classList.add("is-fading");
+      window.setTimeout(() => {
+        change();
+        element.classList.remove("is-fading");
+      }, 850);
+    } else {
+      change();
+    }
+  });
+}
+
+/* Author note is a side panel, not a screen-covering modal. */
+function toggleAuthor(open) {
+  const shouldOpen = typeof open === "boolean" ? open : !byId("authorPanel").classList.contains("open");
+  byId("authorPanel").classList.toggle("open", shouldOpen);
+  byId("authorPanel").setAttribute("aria-hidden", String(!shouldOpen));
+  byId("authorToggle").setAttribute("aria-expanded", String(shouldOpen));
+  byId("authorToggle").classList.toggle("selected", shouldOpen);
+}
+byId("authorToggle").addEventListener("click", () => toggleAuthor());
+byId("authorClose").addEventListener("click", () => toggleAuthor(false));
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") toggleAuthor(false);
+});
+
+/* Initial text is randomized on every visit. Language preference persists. */
+setLanguage(language);
+showRandomPhrases(false);
+
+/* Change quotations slowly; dividers remain fixed. */
+window.setInterval(() => {
+  const data = translations[language];
+  fadeTo(byId("heroQuote"), randomItem(data.hero));
+  fadeTo(byId("lowerQuote"), randomItem(data.lower));
+  fadeTo(byId("headerPhrase"), randomItem(data.header));
+  fadeTo(byId("footerPhrase"), randomItem(data.footer));
+}, 14000);
+window.setInterval(() => showEasterEggs(true), 9000);
+</script>
+</body>
+</html>
