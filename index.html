@@ -231,68 +231,134 @@ function showRandomPhrases(animate = true) {
 }
 
 /*
-  Easter eggs use non-overlapping layout slots rather than arbitrary coordinates.
-  Desktop: up to three phrases. Tablet: two. Phone: one.
-  Long text wraps inside its own slot; star and phrase fade as one unit.
+  Easter eggs:
+  - locations are randomized from a broad set of safe positions;
+  - the same element does not reuse its previous position immediately;
+  - collision checks prevent two visible phrases from overlapping;
+  - phones show one phrase, wider screens can show up to three.
 */
 const ambient = [byId("ambientOne"), byId("ambientTwo"), byId("ambientThree")];
-const ambientSlots = {
-  desktop: [
-    { left: "0%", top: "13%", right: "auto" },
-    { left: "2%", top: "61%", right: "auto" },
-    { left: "auto", top: "34%", right: "0%" }
-  ],
-  tablet: [
-    { left: "0%", top: "12%", right: "auto" },
-    { left: "auto", top: "48%", right: "0%" }
-  ],
-  phone: [
-    { left: "0%", top: "-24px", right: "auto" },
-    { left: "auto", top: "-24px", right: "0%" }
-  ]
-};
+const lastAmbientSlots = new Map();
 
-function sampleDistinct(array, count) {
+function shuffle(array) {
   const copy = [...array];
   for (let i = copy.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
-  return copy.slice(0, count);
+  return copy;
+}
+
+function getAmbientSlots(narrowPhone) {
+  if (narrowPhone) {
+    // A real narrow phone has very little free horizontal space. Keep the
+    // single phrase in the upper band, away from the central logo and title.
+    return [
+      { id: "phone-left", left: "0%", right: "auto", top: "-28px" },
+      { id: "phone-right", left: "auto", right: "0%", top: "-28px" },
+      { id: "phone-left-low", left: "0%", right: "auto", top: "-28px" },
+      { id: "phone-right-low", left: "auto", right: "0%", top: "-28px" }
+    ];
+  }
+  return [
+    { id: "left-high", left: "0%", right: "auto", top: "2%" },
+    { id: "left-mid", left: "2%", right: "auto", top: "28%" },
+    { id: "left-low", left: "4%", right: "auto", top: "59%" },
+    { id: "right-high", left: "auto", right: "0%", top: "12%" },
+    { id: "right-mid", left: "auto", right: "2%", top: "40%" },
+    { id: "right-low", left: "auto", right: "0%", top: "66%" },
+    { id: "left-high-offset", left: "9%", right: "auto", top: "13%" },
+    { id: "right-high-offset", left: "auto", right: "9%", top: "3%" }
+  ];
+}
+
+function boxesOverlap(a, b, padding = 12) {
+  return !(a.right + padding <= b.left || a.left >= b.right + padding ||
+           a.bottom + padding <= b.top || a.top >= b.bottom + padding);
 }
 
 function showEasterEggs(animate = true) {
   const width = window.innerWidth;
-  // A phone using "Desktop site" can report a wide viewport, so check the device too.
   const phoneDevice = /Android|iPhone|iPod|Mobile/i.test(navigator.userAgent);
-  const mode = phoneDevice || width <= 560 ? "phone" : width <= 900 ? "tablet" : "desktop";
-  const slots = sampleDistinct(ambientSlots[mode], mode === "phone" ? 1 : ambientSlots[mode].length);
-  const visibleCount = slots.length;
-  const chosenPhrases = sampleDistinct(translations[language].easter, Math.min(visibleCount, translations[language].easter.length));
+  const narrowPhone = width <= 560;
+  const mode = phoneDevice || narrowPhone ? "phone" : width <= 900 ? "tablet" : "desktop";
+  const visibleCount = mode === "phone" ? 1 : mode === "tablet" ? 2 : 3;
+  const slots = shuffle(getAmbientSlots(narrowPhone));
+  const phrases = shuffle(translations[language].easter);
+  const placedBoxes = [];
+  let slotIndex = 0;
 
   ambient.forEach((element, index) => {
-    const visible = index < visibleCount;
-    element.style.display = visible ? "flex" : "none";
-    if (!visible) return;
+    if (index >= visibleCount) {
+      element.style.display = "none";
+      element.classList.add("is-fading");
+      return;
+    }
 
-    const change = () => {
-      const position = slots[index];
-      element.style.left = position.left;
-      element.style.right = position.right;
-      element.style.top = position.top;
-      element.querySelector(".ambient-text").textContent = chosenPhrases[index];
-    };
+    element.style.display = "flex";
+    element.style.width = narrowPhone ? "min(126px, 35%)" : "min(190px, 22%)";
+    element.style.maxWidth = narrowPhone ? "126px" : "190px";
+    element.querySelector(".ambient-text").textContent = phrases[index % phrases.length];
+
+    // Try several shuffled positions. If one would collide with an earlier
+    // phrase, test the next one. The previous position is avoided when possible.
+    let chosen = null;
+    for (let attempt = 0; attempt < slots.length; attempt++) {
+      const candidate = slots[(slotIndex + attempt) % slots.length];
+      if (candidate.id === lastAmbientSlots.get(element.id)) continue;
+      element.style.left = candidate.left;
+      element.style.right = candidate.right;
+      element.style.top = candidate.top;
+      const rect = element.getBoundingClientRect();
+      const heroRect = byId("ambientOne").parentElement.getBoundingClientRect();
+      const localRect = {
+        left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom
+      };
+      const overlaps = placedBoxes.some(box => boxesOverlap(localRect, box));
+      // Keep each phrase inside the visible hero region, with a small margin.
+      const outside = rect.left < heroRect.left - 1 || rect.right > heroRect.right + 1;
+      if (!overlaps && !outside) {
+        chosen = candidate;
+        placedBoxes.push(localRect);
+        lastAmbientSlots.set(element.id, candidate.id);
+        slotIndex = (slotIndex + attempt + 1) % slots.length;
+        break;
+      }
+    }
+
+    // Last-resort fallback: use the next slot; a single phrase can never overlap itself.
+    if (!chosen) {
+      chosen = slots[index % slots.length];
+      element.style.left = chosen.left;
+      element.style.right = chosen.right;
+      element.style.top = chosen.top;
+      lastAmbientSlots.set(element.id, chosen.id);
+    }
+
     if (animate) {
       element.classList.add("is-fading");
-      window.setTimeout(() => {
-        change();
-        element.classList.remove("is-fading");
-      }, 850);
+      window.setTimeout(() => element.classList.remove("is-fading"), 850);
     } else {
-      change();
       element.classList.remove("is-fading");
     }
   });
+}
+
+function hideEasterEggs() {
+  ambient.forEach(element => {
+    if (element.style.display === "none") return;
+    element.classList.add("is-fading");
+    window.setTimeout(() => { element.style.display = "none"; }, 900);
+  });
+}
+
+function runEasterEggCycle() {
+  showEasterEggs(true);
+  // Visible for ~4 seconds, then fully gone for at least 12 seconds.
+  window.setTimeout(() => {
+    hideEasterEggs();
+    window.setTimeout(runEasterEggCycle, 12900);
+  }, 4000);
 }
 
 // Recalculate safe positions if the screen rotates or the browser is resized.
@@ -318,7 +384,6 @@ document.addEventListener("keydown", event => {
 
 /* Initial text is randomized on every visit. Language preference persists. */
 setLanguage(language);
-showRandomPhrases(false);
 
 /* Change quotations slowly; dividers remain fixed. */
 window.setInterval(() => {
@@ -328,7 +393,7 @@ window.setInterval(() => {
   fadeTo(byId("headerPhrase"), randomItem(data.header, "header"));
   fadeTo(byId("footerPhrase"), randomItem(data.footer, "footer"));
 }, 14000);
-window.setInterval(() => showEasterEggs(true), 9000);
+runEasterEggCycle();
 </script>
 </body>
 </html>
