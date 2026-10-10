@@ -424,21 +424,38 @@ document.addEventListener("keydown", event => {
 /* Initial text is randomized on every visit. Language preference persists. */
 setLanguage(language);
 
-/* Change quotations slowly; dividers remain fixed. */
-window.setInterval(() => {
-  const data = translations[language];
-  fadeTo(byId("heroQuote"), randomItem(data.hero, "hero"));
-  fadeTo(byId("lowerQuote"), randomItem(data.lower, "lower"));
-  fadeTo(byId("headerPhrase"), randomItem(data.header, "header"));
-  fadeTo(byId("footerPhrase"), randomItem(data.footer, "footer"));
+/* Each text group has its own clock, so the whole page never fades in unison.
+   Short phrases rotate more often than quotations; the longer author text rotates
+   least often. Initial offsets also keep the first changes separated in time. */
+function scheduleRotation({ elementId, poolKey, interval, initialDelay, pick = "random" }) {
+  const rotate = async () => {
+    const data = translations[language];
+    const pool = data[poolKey];
+    if (pool && pool.length > 1) {
+      let nextText;
+      if (pick === "author") {
+        authorTextIndex = (authorTextIndex + 1) % pool.length;
+        nextText = pool[authorTextIndex];
+      } else {
+        nextText = randomItem(pool, poolKey);
+      }
+      await fadeTo(byId(elementId), nextText);
+    }
+    window.setTimeout(rotate, interval);
+  };
+  window.setTimeout(rotate, initialDelay);
+}
 
-  // Rotate author epigraphs on the same page timer, even while the panel is closed.
-  const authorPool = data.author;
-  if (authorPool && authorPool.length > 1) {
-    authorTextIndex = (authorTextIndex + 1) % authorPool.length;
-    fadeTo(byId("authorText"), authorPool[authorTextIndex]);
-  }
-}, 14000);
+// Short phrases: frequent, but offset from one another.
+scheduleRotation({ elementId: "headerPhrase", poolKey: "header", interval: 10000, initialDelay: 6500 });
+scheduleRotation({ elementId: "footerPhrase", poolKey: "footer", interval: 12000, initialDelay: 11000 });
+
+// Quotations: slower than phrases, with separate schedules.
+scheduleRotation({ elementId: "heroQuote", poolKey: "hero", interval: 22000, initialDelay: 16000 });
+scheduleRotation({ elementId: "lowerQuote", poolKey: "lower", interval: 26000, initialDelay: 24000 });
+
+// The longest text changes least often. Its timer runs even while the panel is closed.
+scheduleRotation({ elementId: "authorText", poolKey: "author", interval: 45000, initialDelay: 31000, pick: "author" });
 runEasterEggCycle();
 </script>
 </body>
